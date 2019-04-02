@@ -43,7 +43,7 @@ export default class Background extends React.Component {
         activeImg: 0
     };
     componentDidMount() {
-        window.setInterval(() => this.nextImg() , 5000)
+        // window.setInterval(() => this.nextImg() , 5000)
     }
 
     nextImg = () => {

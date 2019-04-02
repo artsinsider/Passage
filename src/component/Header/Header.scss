@@ -1,0 +1,1 @@
+.main-header {  display: grid;  grid-template-columns: repeat(12, 1fr);  .logo-name {    grid-column: 1/ 5;  }  .icon-user {    grid-column: 11/12;  }  .icon-menu {    grid-column: 12/12;  }}
