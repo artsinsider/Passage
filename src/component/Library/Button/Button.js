@@ -7,6 +7,7 @@ export default class Button extends React.Component {
         return (
             <Buttons
                 theme={theme}
+                type={type}
                 className="button"
                 disabled={!!disabled}
                 onClick={onClick}

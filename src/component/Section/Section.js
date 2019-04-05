@@ -1,6 +1,7 @@
 import React  from 'react';
 import styled from 'styled-components';
 import style  from '../../Theme/GlobalVariables'
+import List   from '../../component/LIst/LIst'
 
 const LinkSection =styled('div')`
     height: 92.9vh;
@@ -9,6 +10,8 @@ const LinkSection =styled('div')`
 const NewsSection =styled('div')`
     border-left: 1px solid ${style.borderColor};
     border-right: 1px solid ${style.borderColor};
+    height: 100vh;
+    overflow: auto;
 `;
 
 const ViewSection =styled('div')``;
@@ -26,7 +29,7 @@ export default class Section extends React.Component {
                     1
                 </LinkSection>
                 <NewsSection className="news-section">
-                  2
+                  <List/>
                 </NewsSection>
                 <ViewSection className="view-section">
                   3

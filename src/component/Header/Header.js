@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import Button from '../../component/Library/Button/Button';
 import './Header.scss'
 
+import { Spring } from 'react-spring/renderprops'
+import { useSpring, animated , config} from 'react-spring';
+
 const Head = styled('header')`
     color: ${props => props.isChange ? 'white' : 'red'} ;
     padding: 12px 22px;
@@ -29,6 +32,18 @@ const Icon_User = styled('span')`
 
 const Icon_Menu = styled(Icon_User)``;
 
+const HookedComponent = () => {
+
+    const props = useSpring({
+        opacity: 1,
+        color: 'white',
+        from: { opacity: 0 },
+        delay: '2000'
+    });
+    return <animated.span style={props}>This text Faded in Using Hooks</animated.span>
+};
+
+
 export default class Header extends React.Component {
     state={
         isChange: false
@@ -40,9 +55,35 @@ export default class Header extends React.Component {
                     Passage
                     <Button onClick={() => this.setState({isChange: !this.state.isChange})} >КНОПКА</Button>
                 </LogoName>
+                <div className="springs">
+                    <Spring from={{ opacity: 0, marginTop: -1000 }} to={{ opacity: 1, marginTop: 0 }}>
+                        { props => (
+                            <div  className="Apps" style={ props }>
+                                <div >
+                                    <header className="App-headers" >
+                                        <span>This Div Slid Down and Faded In On Load</span>
+                                        <Spring
+                                            from={{ number: 0 }}
+                                            to={{ number: 10 }}
+                                            delay= '1000'
+                                            config = { config.molasses }>
+                                            {props => <span>{props.number.toFixed()}</span>}
+                                        </Spring>
+                                        <HookedComponent />
+                                    </header>
+                                </div>
+                            </div>
+                        )
+                        }
+                    </Spring>
+                </div>
+
+
                 <Icon_User className="icon-user" />
                 <Icon_Menu className="icon-menu" />
             </Head>
         )
     }
 }
+
+// export default HookedComponent;

@@ -2,28 +2,6 @@ import React  from 'react';
 import styled from 'styled-components';
 import { Transition , animated} from 'react-spring/renderprops';
 
-const WrapImg = styled('div')`
-    position: absolute;
-    z-index: -1;
-`;
-
-const Shadow = styled('div')`
-    position: absolute;
-    box-shadow: inset 0 0 200px 20px rgb(0, 0, 0);
-    min-width: 100vw;
-    min-height: 100vh;
-`;
-
-const Images = styled(animated.div)`
-    background-position: left center;
-    max-width: 100%;
-    background-image: url(${props => props.url});
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    background-repeat: no-repeat;
-`;
-
 export default class Background extends React.Component {
     state = {
         urls : [
@@ -52,9 +30,7 @@ export default class Background extends React.Component {
         }
       this.setState({activeImg: this.state.activeImg + 1})
         console.log('next', this.state.activeImg)
-    };
-
-    // TODO template spring https://codesandbox.io/embed/7mqy09jyq
+    };  // TODO template spring https://codesandbox.io/embed/7mqy09jyq
 
     render() {
         return (
@@ -78,3 +54,27 @@ export default class Background extends React.Component {
         )
     }
 }
+
+
+const WrapImg = styled('div')`
+    position: absolute;
+    z-index: -1;
+`;
+
+const Shadow = styled('div')`
+    position: absolute;
+    box-shadow: inset 0 0 200px 20px rgb(0, 0, 0);
+    min-width: 100vw;
+    min-height: 100vh;
+    z-index: 1;
+`;
+
+const Images = styled(animated.div)`
+    background-position: left center;
+    max-width: 100%;
+    background-image: url(${props => props.url});
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+`;
