@@ -3,6 +3,7 @@
   overflow-x: hidden;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  height: 100vh;
 
     .main-header {
       grid-column: 1/ 13;
@@ -31,7 +32,7 @@
 
     .auth-container {
       grid-column: 1 / 13;
-      grid-row: 1 /13;
+      grid-row: 1 /12;
     }
 
     .test-environment {

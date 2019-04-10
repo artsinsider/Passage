@@ -1,13 +1,13 @@
 import React      from 'react';
-
-import Nav from '../Navigation/Navigations'
+import Auth       from '../Auth/Auth';
 import './App.scss';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Nav/>
+        <Auth/>
+
       </div>
     );
   }
@@ -19,10 +19,11 @@ export default App;
 // import Header     from '../../component/Header/Header';
 // import Section    from '../../component/Section/Section';
 // import Background from '../../component/Backgroud/Background';
-// import Auth       from '../Auth/Auth';
+
+//import Nav         from '../Navigation/Navigations'
 
 
-// <Auth/>
+// <Nav/>
 // <Header/>
 // <Section/>
 // <Background/>
