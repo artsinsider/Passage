@@ -37,6 +37,7 @@ function AuthExample() {
 const fakeAuth = {
     isAuthenticated: false,
     authenticate(cb) {
+        console.log()
         this.isAuthenticated = true;
         setTimeout(cb, 100); // fake async
     },
