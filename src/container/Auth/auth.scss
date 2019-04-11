@@ -1,1 +1,1 @@
-.auth-container {  font-size: 1em;  overflow-x: hidden;  display: grid;  grid-template-columns: repeat(4, 1fr);  margin: 25px 0;  .auth-form {    grid-column: 2/ 4;  }}
+.auth-container {  font-size: 1em;  overflow-x: hidden;  display: grid;  grid-template-columns: repeat(4, 1fr);  position: absolute;  top: 0;  left: 0;  right: 0;  bottom: 0;  background: rgba(0,0,0,.5);  z-index: 999;  .auth-form {    grid-column: 2/ 4;  }}
