@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Logo() {
     return (
-        <svg version="1.1" id="Capa_2" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 106.082 106.083" fill="#63cbeb">
+        <svg version="1.1" id="Capa_2" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 106.082 106.083" fill="#6060f2">
             <g>
                 <g>
                     <path d="M93.383,58.991c-0.004-19.248-13.529-35.332-31.592-39.282c-3.163-0.533-8.439-7.918-4.006-12.817L40.326,6.838

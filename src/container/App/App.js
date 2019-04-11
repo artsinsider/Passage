@@ -4,47 +4,20 @@ import SignUp       from '../Auth/SignUp';
 // import Nav         from '../Navigation/Navigations'
 import AuthExample  from '../Navigation/Auth'
 import './App.scss';
-
+import PublickPage from '../PublickPage/PublickPage'
 import {BrowserRouter as Router, Route, Link, Redirect, withRouter} from "react-router-dom";
 
-const fakeAuth = {
-    isAuthenticated: false,
-    authenticate(cb) {
-        this.isAuthenticated = true;
-        setTimeout(cb, 100); // fake async
-    },
-    signout(cb) {
-        this.isAuthenticated = false;
-        setTimeout(cb, 100);
-    }
-};
 
-const FormAuthorized = withRouter(
-    ({ history }) =>
-        fakeAuth.isAuthenticated ? (
-              <button onClick={() => {fakeAuth.signout(() => history.push("/"));}}> Sign out </button>
-        ) : (
-            <ul>
-              <li>
-                <Link to="/sign-in" >Sign in</Link>
-              </li>
-              <li>
-                <Link to="/sign-up">Sign up</Link>
-              </li>
-            </ul>
-        )
-);
+
 
 class App extends React.Component {
   render() {
     return (
         <Router>
-
-          <FormAuthorized/>
-
+          <Route exact path="/" component={PublickPage} />
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
-
+            <Link to="/" >Home</Link>
           <AuthExample/>
         </Router>
     );
