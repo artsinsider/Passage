@@ -1,9 +1,8 @@
-import React      from 'react';
-import SignIn       from '../Auth/SignIn';
-import SignUp       from '../Auth/SignUp';
-import AuthExample  from '../Navigation/Auth'
+import React       from 'react';
+import SignIn      from '../Auth/SignIn';
+import SignUp      from '../Auth/SignUp';
 import PublickPage from '../PublickPage/PublickPage'
-import {BrowserRouter as Router, Route, Redirect, withRouter, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import './App.scss';
 
 class Home extends React.PureComponent {
@@ -49,7 +48,6 @@ export default function App() {
         </Router>
     );
 }
-
 //
 // <Link to="/" >Home</Link>
 // <AuthExample/>
@@ -60,7 +58,6 @@ export default function App() {
 // import Background from '../../component/Backgroud/Background';
 
 //  <Auth/>
-
 // <Nav/>
 // <Header/>
 // <Section/>
