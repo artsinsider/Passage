@@ -4,6 +4,7 @@ import SignUp      from '../Auth/SignUp';
 import Loader      from '../../component/Library/Loader/Loader';
 import PublickPage from '../PublickPage/PublickPage'
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import wisdoms from '../../records/wisdoms';
 import './App.scss';
 
 class Home extends React.PureComponent {
@@ -32,12 +33,22 @@ class Home extends React.PureComponent {
     render() {
         let { location } = this.props;
         let isModal = (location.state && location.state.modal && this.previousLocation !== location);
+        const theme = {
+            fg: "palevioletred",
+            bg: "red"
+        };
 
         return (
             <>
                 <Loader show={this.state.show} />
                 <Switch location={isModal ? this.previousLocation : location} >
-                    <Route exact path="/" component={PublickPage} />
+                    <Route exact path="/" render={() =>
+                        <PublickPage
+                            {...this.props}
+                            theme={theme}
+                            wisdoms={wisdoms}
+                        />}
+                    />
                 </Switch>
                 {isModal ? <Route path="/sign-in" component={SignIn} /> : null}
                 {isModal ? <Route path="/sign-up" component={SignUp} /> : null}
@@ -50,7 +61,7 @@ class Home extends React.PureComponent {
 export default function App() {
     return (
         <Router>
-            <Route  component={Home}/>
+            <Route component={Home}/>
         </Router>
     );
 }
