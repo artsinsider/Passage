@@ -1,17 +1,22 @@
 import React       from 'react';
 import SignIn      from '../Auth/SignIn';
 import SignUp      from '../Auth/SignUp';
+import Loader      from '../../component/Library/Loader/Loader';
 import PublickPage from '../PublickPage/PublickPage'
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import './App.scss';
 
 class Home extends React.PureComponent {
+    state = {
+        show: true
+    };
     previousLocation = this.props.location;
 
     componentDidMount() {
         if( this.props.location.state && this.props.location.state.modal) {
             this.props.history.push({pathname: "/", state:{modal: false}});
         }
+        window.setTimeout(() => this.setState({show: !this.state.show}), 2000)
     }
 
     componentWillUpdate(nextProps) {
@@ -30,6 +35,7 @@ class Home extends React.PureComponent {
 
         return (
             <>
+                <Loader show={this.state.show} />
                 <Switch location={isModal ? this.previousLocation : location} >
                     <Route exact path="/" component={PublickPage} />
                 </Switch>
