@@ -30,5 +30,6 @@
   ],
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.0"
-  }
+  },
+  "homepage" : "https://artsinsider.github.io/Passage/"
 }
