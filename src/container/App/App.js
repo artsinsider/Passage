@@ -5,11 +5,15 @@ import Loader      from '../../component/Library/Loader/Loader';
 import PublickPage from '../PublickPage/PublickPage'
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import wisdoms from '../../records/wisdoms';
+import theme        from '../../records/theme';
 import './App.scss';
+
+import styled,{ ThemeProvider, withTheme } from 'styled-components';
 
 class Home extends React.PureComponent {
     state = {
-        show: true
+        show: true,
+        activeTheme: 'defaultTheme'
     };
     previousLocation = this.props.location;
 
@@ -33,25 +37,34 @@ class Home extends React.PureComponent {
     render() {
         let { location } = this.props;
         let isModal = (location.state && location.state.modal && this.previousLocation !== location);
-        const theme = {
-            fg: "palevioletred",
-            bg: "red"
-        };
 
         return (
             <>
                 <Loader show={this.state.show} />
                 <Switch location={isModal ? this.previousLocation : location} >
                     <Route exact path="/" render={() =>
+                        <ThemeProvider theme={theme[this.state.activeTheme]}>
                         <PublickPage
                             {...this.props}
-                            theme={theme}
                             wisdoms={wisdoms}
-                        />}
+                        />
+                        </ThemeProvider>}
                     />
                 </Switch>
-                {isModal ? <Route path="/sign-in" component={SignIn} /> : null}
-                {isModal ? <Route path="/sign-up" component={SignUp} /> : null}
+                {isModal ?
+                    <Route path="/sign-in"
+                           render={() =>
+                               <ThemeProvider theme={theme[this.state.activeTheme]}>
+                                   <SignIn {...this.props}/>
+                                 </ThemeProvider>}/>
+                    : null}
+                {isModal ?
+                    <Route path="/sign-up"
+                              render={() =>
+                                  <ThemeProvider theme={theme[this.state.activeTheme]}>
+                                      <SignUp {...this.props}/>
+                                  </ThemeProvider>}/>
+                    : null}
             </>
         )
     }
