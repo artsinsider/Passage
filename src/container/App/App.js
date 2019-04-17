@@ -1,14 +1,13 @@
-import React       from 'react';
-import SignIn      from '../Auth/SignIn';
-import SignUp      from '../Auth/SignUp';
-import Loader      from '../../component/Library/Loader/Loader';
-import PublickPage from '../PublickPage/PublickPage'
+import React           from 'react';
+import SignIn          from '../Auth/SignIn';
+import SignUp          from '../Auth/SignUp';
+import Loader          from '../../component/Library/Loader/Loader';
+import PublickPage     from '../PublickPage/PublickPage'
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import wisdoms from '../../records/wisdoms';
-import theme        from '../../records/theme';
+import wisdoms         from '../../records/wisdoms';
+import theme           from '../../records/theme';
+import {ThemeProvider} from 'styled-components';
 import './App.scss';
-
-import styled,{ ThemeProvider, withTheme } from 'styled-components';
 
 class Home extends React.PureComponent {
     state = {
