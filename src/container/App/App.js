@@ -12,7 +12,7 @@ import './App.scss';
 class Home extends React.PureComponent {
     state = {
         show: true,
-        activeTheme: 'defaultTheme'
+        activeTheme: localStorage.getItem('theme') ? localStorage.getItem('theme') : 'Default_Theme'
     };
     previousLocation = this.props.location;
 
@@ -33,19 +33,28 @@ class Home extends React.PureComponent {
         }
     }
 
+    changeTheme = (name) => {
+        localStorage.setItem('theme', name);
+        this.setState({activeTheme: name})
+    };
+
     render() {
         let { location } = this.props;
         let isModal = (location.state && location.state.modal && this.previousLocation !== location);
 
         return (
             <>
-                <Loader show={this.state.show} />
+                <ThemeProvider theme={theme[this.state.activeTheme]}>
+                    <Loader show={this.state.show} />
+                </ThemeProvider>
                 <Switch location={isModal ? this.previousLocation : location} >
                     <Route exact path="/" render={() =>
                         <ThemeProvider theme={theme[this.state.activeTheme]}>
                         <PublickPage
                             {...this.props}
                             wisdoms={wisdoms}
+                            themeLIst={Object.keys(theme)}
+                            changeTheme={this.changeTheme}
                         />
                         </ThemeProvider>}
                     />
