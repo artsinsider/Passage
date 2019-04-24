@@ -2,14 +2,41 @@ import React           from 'react';
 import SignIn          from '../Auth/SignIn';
 import SignUp          from '../Auth/SignUp';
 import Loader          from '../../component/Library/Loader/Loader';
-import PublickPage     from '../PublickPage/PublickPage'
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import wisdoms         from '../../records/wisdoms';
+import Header          from '../../component/Header/Header';
+import Navigation      from '../../component/Navigation/Navigation';
+import Home            from '../Pages/Home/Home';
+import Claim           from '../Pages/Сlaim/Сlaim'
+import Themes          from '../../component/Themes/Themes';
+import {Route, Switch} from "react-router-dom";
 import theme           from '../../records/theme';
 import {ThemeProvider} from 'styled-components';
 import './App.scss';
 
-class Home extends React.PureComponent {
+const routes = [
+    {
+        path: "/",
+        linkName: "Home",
+        component: Home,
+        exact: true
+    }, {
+        path: "/content",
+        linkName: "About money",
+        component: content,
+        exact: false
+    },{
+        path: "/claim",
+        linkName: "Сlaim",
+        component: Claim,
+        exact: false
+    },{
+        path: "/faq",
+        linkName: "FAQ",
+        component: faq,
+        exact: false
+    }
+];
+
+class App extends React.PureComponent {
     state = {
         show: true,
         activeTheme: localStorage.getItem('theme') ? localStorage.getItem('theme') : 'Default_Theme'
@@ -47,18 +74,23 @@ class Home extends React.PureComponent {
                 <ThemeProvider theme={theme[this.state.activeTheme]}>
                     <Loader show={this.state.show} />
                 </ThemeProvider>
+
+                <Header>
+                    <Navigation items={routes}/>
+                    <Themes selectedTheme={this.props.changeTheme}/>
+                </Header>
+
                 <Switch location={isModal ? this.previousLocation : location} >
-                    <Route exact path="/" render={() =>
-                        <ThemeProvider theme={theme[this.state.activeTheme]}>
-                        <PublickPage
-                            {...this.props}
-                            wisdoms={wisdoms}
-                            themeLIst={Object.keys(theme)}
-                            changeTheme={this.changeTheme}
-                        />
-                        </ThemeProvider>}
-                    />
+                    {routes.map((route, i) =>
+                            <Route exact={route.exact}
+                               key={i}
+                               path={route.path}
+                                   component={route.component}/>
+                    )}
+                    <Route component={notFound}/>
                 </Switch>
+
+
                 {isModal ?
                     <Route path="/sign-in"
                            render={() =>
@@ -76,33 +108,19 @@ class Home extends React.PureComponent {
             </>
         )
     }
+}
+export default App
 
+function content() {
+    return <h3>CONTENT</h3>
 }
 
-export default function App() {
-    return (
-        <Router>
-            <Route component={Home}/>
-        </Router>
-    );
+function faq() {
+    return <h3>FAQ</h3>
 }
-//
-// <Link to="/" >Home</Link>
-// <AuthExample/>
-//
-// import TestStand  from '../TestEnvironment/TestStand'
-// import Header     from '../../component/Header/Header';
-// import Section    from '../../component/Section/Section';
-// import Background from '../../component/Backgroud/Background';
-
-//  <Auth/>
-// <Nav/>
-// <Header/>
-// <Section/>
-// <Background/>
-// <TestStand/>
-
-//
-// <div className="App">
-//   <AuthExample/>
-// </div>
+function notFound() {
+    return <div>
+            <h1>404</h1>
+            <p>не найдено</p>
+    </div>
+}
