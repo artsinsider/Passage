@@ -9,8 +9,9 @@ import Claim           from '../Pages/Сlaim/Сlaim'
 import Themes          from '../../component/Themes/Themes';
 import {Route, Switch} from "react-router-dom";
 import theme           from '../../records/theme';
-import {ThemeProvider} from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 import './App.scss';
+import Modal       from '../../component/HOC/Modal/Modal';
 
 const routes = [
     {
@@ -27,7 +28,7 @@ const routes = [
         path: "/claim",
         linkName: "Сlaim",
         component: Claim,
-        exact: false
+        exact: true
     },{
         path: "/faq",
         linkName: "FAQ",
@@ -68,7 +69,7 @@ class App extends React.PureComponent {
     render() {
         let { location } = this.props;
         let isModal = (location.state && location.state.modal && this.previousLocation !== location);
-
+        console.log(this.props)
         return (
             <>
                 <ThemeProvider theme={theme[this.state.activeTheme]}>
@@ -87,9 +88,12 @@ class App extends React.PureComponent {
                                path={route.path}
                                    component={route.component}/>
                     )}
+
+
                     <Route component={notFound}/>
                 </Switch>
 
+            {isModal ? <Route path="/claim/:name" render={() => <Claimss {...this.props} />}/> : null}
 
                 {isModal ?
                     <Route path="/sign-in"
@@ -105,6 +109,8 @@ class App extends React.PureComponent {
                                       <SignUp {...this.props}/>
                                   </ThemeProvider>}/>
                     : null}
+
+
             </>
         )
     }
@@ -113,6 +119,23 @@ export default App
 
 function content() {
     return <h3>CONTENT</h3>
+}
+
+const Claims = styled.div`
+       position: absolute;
+        max-width: 500px;
+        top: 15%;
+        left: 10%;
+        right: 10%;
+        text-align: center;
+        padding: 20px 0;
+        border: 1px solid #6447bd;
+        background: linear-gradient(143deg,#432a9a,#262874);
+`;
+
+function Claimss(props) {
+    console.log('---------',props)
+    return <Modal> <Claims>1112121212</Claims> </Modal>
 }
 
 function faq() {
