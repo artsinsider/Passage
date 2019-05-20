@@ -85,13 +85,12 @@ export const Restaurants = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit ,minmax(300px,1fr));
     grid-template-rows: repeat(auto-fit ,minmax(300px,1fr));
-    grid-column-gap: 10px;
+    grid-gap: 50px;
     
     
     a {
         height: 300px;
         background: #fff;
-        padding: 10px;
         display: inline-block;
         cursor: pointer;
         text-align: initial;
@@ -113,7 +112,7 @@ export const Img = styled.div`
     background-size: cover;
     background-position: center;
     transition:transform .3s cubic-bezier(.645, .045, .355, 1);
-    
+    background-color: #eee;   
     &:hover {
       transform: scale(1.1, 1.1);
     }

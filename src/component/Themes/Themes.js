@@ -9,6 +9,7 @@ const ItemList = styled.li`
 `;
 
 const Theme = styled.div`
+    display: none;
     position: absolute;
     top: 50px;
     background: #313030;

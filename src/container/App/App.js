@@ -12,20 +12,18 @@ import Home            from '../Pages/Home/Home';
 import Claim           from '../Pages/Сlaim/Сlaim';
 import Restaurant      from '../Pages/Сlaim/Restaurant/Restaurant';
 import theme           from '../../records/theme';
-import restaurant      from '../../records/restaurant';
-import menu            from '../../records/menu';
 import './App.scss';
 
 const routes = [
     {
         path: "/",
         linkName: "Home",
-        component: Home,
+        component: root,
         exact: true
     },{
         path: "/claim",
         linkName: "Сlaim",
-        component: () => <Claim restaurant={restaurant} menu={menu}/>,
+        component: Claim,
         exact: true
     }
 ];
@@ -59,8 +57,6 @@ class App extends React.PureComponent {
         this.setState({activeTheme: name})
     };
 
-    getRestaurant = (params) => restaurant.filter(feed => feed.place.id === params.id)[0];
-
     render() {
         let { location } = this.props;
         let isModal = (location.state && location.state.modal && this.previousLocation !== location);
@@ -83,20 +79,14 @@ class App extends React.PureComponent {
                                path={route.path}
                                component={route.component}/>
                     )}f
-
+                    <Route
+                        exact
+                        path="/claim/:restaurant"
+                        component={Home}
+                    />
                     <Route component={notFound}/>
-                </Switch>
 
-                {isModal ? <Route
-                              exact
-                              path="/claim/:name"
-                              render={(rest) =>
-                                  <Modal {...rest}>
-                                      <Restaurant data={this.getRestaurant(rest.location.state)}/>
-                                  </Modal>
-                              }
-                           />
-                 : null}
+                </Switch>
 
                 {isModal ?
                     <Route path="/sign-in"
@@ -124,3 +114,22 @@ function notFound() {
             <p>не найдено</p>
     </div>
 }
+function root() {
+    return <div>
+            <h1>Root page</h1>
+    </div>
+}
+
+//
+// {isModal ? <Route
+//         exact
+//         path="/claim/:name"
+//         render={(rest) =>
+//             <Modal {...rest}>
+//                 <Restaurant data={this.getRestaurant(rest.location.state)}/>
+//             </Modal>
+//         }
+//     />
+//     : null}
+
+// getRestaurant = (params) => restaurant.filter(feed => feed.place.id === params.id)[0];

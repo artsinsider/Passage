@@ -1,0 +1,1 @@
+import axios  from 'axios';import constant from '../constants/constants'export default function requests(url, call) {    axios.get(`${constant.BASE_URL}${url}`)        .then( (response) => {            call(response.data);        })        .catch( (error) => console.error(error));}

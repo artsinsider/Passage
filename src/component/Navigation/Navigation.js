@@ -13,23 +13,25 @@ const ListWrap = styled.ul`
 `;
 
 const ListItem = styled.li`
-   display: inline;
-   margin: 0 10px;
-  
-    color: #fff;
+    display: inline;
+    margin: 0 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    
     &:hover {
      opacity: .65;
     }
   
   a {
-    color: #fff;
+    color: #000;
   }
 `;
 
 const LoginLinks = styled.div`
      grid-column: 3/4;
-     line-height: 2.8em;
+     line-height: 5em;
      cursor: pointer;
      > * {
         margin: 0 10px;
@@ -37,21 +39,16 @@ const LoginLinks = styled.div`
      
     a {
         text-decoration: none;
-        color: #fff;
+        color: #000;
         transition: all .3s cubic-bezier(.645, .045, .355, 1);
 
     &:hover {
             opacity: .65;
         }
     }
-    
-    svg {
-        
-    }
 `;
 
 export default class Navigation extends React.PureComponent {
-
     render() {
         return (
             <>
@@ -59,7 +56,7 @@ export default class Navigation extends React.PureComponent {
                 <ListWrap>
                     {this.props.items.map((link, i) =>
                         <ListItem key={`${link}_${i}`} >
-                            <NavLink exact activeStyle={{color: "#86c232"}} to={link.path} >
+                            <NavLink exact activeStyle={{color: "#ffe033"}} to={link.path} >
                                 {link.linkName}
                             </NavLink>
                         </ListItem>

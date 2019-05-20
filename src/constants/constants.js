@@ -1,0 +1,1 @@
+export default {    IMG_BASE_URL : "https://eda.yandex/",    BASE_URL : 'http://localhost:3002/api/',}
